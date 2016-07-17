@@ -10,6 +10,7 @@ import UIKit
 import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
+    
     static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com"), consumerKey: "vMwrxxVgS0MTJkNzEJXRNg1lB", consumerSecret: "SGzm0CL51zIVWaR6G6Ne4A5cY5i6OBg4ddH6av73Kp0H5Q3G1s")
     
     var loginSuccess: (() -> ())?
@@ -43,29 +44,34 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func currentAccount(){
+    func currentAccount(success: (User) -> (), failure : (NSError) -> ()){
         GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task : NSURLSessionDataTask, response : AnyObject?) in
-            print("accouut\(response)")
             let userDic = response as! NSDictionary
-            
             let user = User(dictinary: userDic)
             
-            //print("name: \(user["name"])")
-            //print("screenname: \(user["screen_name"])")
-            //print("profileurl: \(user["profile_image_url_https"])")
-            //print("description: \(user["description"])")
-            
+            success(user)
             }, failure: { (task : NSURLSessionDataTask?, error : NSError) in
-                print("error")
+                failure(error)
         })
+    }
+    
+    func logout(){
+        User.currentUser = nil
+        deauthorize()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotification, object: nil)
     }
     
     func handleOpenUrl(url: NSURL) {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken : BDBOAuth1Credential!) -> Void in
             
-            self.loginSuccess?()
-            
+            self.currentAccount({ (user:User) in
+                User.currentUser = user
+                self.loginSuccess?()
+                }, failure: { (error : NSError) in
+                    self.loginFailure?(error)
+            })
             
         }) { (error : NSError!) -> Void in
             print("error")

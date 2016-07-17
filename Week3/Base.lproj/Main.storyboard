@@ -30,7 +30,13 @@
                             <constraint firstItem="0uF-BG-0AZ" firstAttribute="top" secondItem="oBS-sd-l29" secondAttribute="bottom" id="t3N-Ys-t95"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="S8V-Hs-CTm"/>
+                    <navigationItem key="navigationItem" id="S8V-Hs-CTm">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="feK-nK-PPj">
+                            <connections>
+                                <action selector="onLogout:" destination="6iF-XX-Neo" id="BVn-ky-IqN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hz4-LF-DMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,7 +76,7 @@
         <!--Navigation Controller-->
         <scene sceneID="QO0-iw-gMz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6aD-7R-3Yx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="6aD-7R-3Yx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4pP-It-PGN">
