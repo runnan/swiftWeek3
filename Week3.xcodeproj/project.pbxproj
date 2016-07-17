@@ -12,6 +12,7 @@
 		1B5BA2791D3BB9C600F0F085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5BA2771D3BB9C600F0F085 /* Main.storyboard */; };
 		1B5BA27B1D3BB9C600F0F085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5BA27A1D3BB9C600F0F085 /* Assets.xcassets */; };
 		1B5BA27E1D3BB9C600F0F085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5BA27C1D3BB9C600F0F085 /* LaunchScreen.storyboard */; };
+		3213A5A4B9FDD2C478BEED5B /* Pods_Week3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5633FE27293A10D88A9D870A /* Pods_Week3.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		1B5BA27A1D3BB9C600F0F085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B5BA27D1D3BB9C600F0F085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B5BA27F1D3BB9C600F0F085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20287FC2B9336F542CFFEEE6 /* Pods-Week3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Week3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Week3/Pods-Week3.debug.xcconfig"; sourceTree = "<group>"; };
+		2EF2DFF4D73D68CF7F3DE40C /* Pods-Week3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Week3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Week3/Pods-Week3.release.xcconfig"; sourceTree = "<group>"; };
+		5633FE27293A10D88A9D870A /* Pods_Week3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Week3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3213A5A4B9FDD2C478BEED5B /* Pods_Week3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				1B5BA2721D3BB9C600F0F085 /* Week3 */,
 				1B5BA2711D3BB9C600F0F085 /* Products */,
+				5923BF5849DEA99DBF98EEEA /* Pods */,
+				DD52586F19EF1E5BDD6F6033 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = Week3;
 			sourceTree = "<group>";
 		};
+		5923BF5849DEA99DBF98EEEA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20287FC2B9336F542CFFEEE6 /* Pods-Week3.debug.xcconfig */,
+				2EF2DFF4D73D68CF7F3DE40C /* Pods-Week3.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DD52586F19EF1E5BDD6F6033 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5633FE27293A10D88A9D870A /* Pods_Week3.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B5BA2821D3BB9C600F0F085 /* Build configuration list for PBXNativeTarget "Week3" */;
 			buildPhases = (
+				2A59BC4E2099FDD452B7DC66 /* [CP] Check Pods Manifest.lock */,
 				1B5BA26C1D3BB9C600F0F085 /* Sources */,
 				1B5BA26D1D3BB9C600F0F085 /* Frameworks */,
 				1B5BA26E1D3BB9C600F0F085 /* Resources */,
+				B92D333C49FF4DCC32012D68 /* [CP] Embed Pods Frameworks */,
+				B1BB1A1AEC581D22DCF1FD4C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A59BC4E2099FDD452B7DC66 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B1BB1A1AEC581D22DCF1FD4C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Week3/Pods-Week3-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B92D333C49FF4DCC32012D68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Week3/Pods-Week3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1B5BA26C1D3BB9C600F0F085 /* Sources */ = {
@@ -247,6 +322,7 @@
 		};
 		1B5BA2831D3BB9C600F0F085 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20287FC2B9336F542CFFEEE6 /* Pods-Week3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Week3/Info.plist;
@@ -258,6 +334,7 @@
 		};
 		1B5BA2841D3BB9C600F0F085 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EF2DFF4D73D68CF7F3DE40C /* Pods-Week3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Week3/Info.plist;
@@ -286,6 +363,7 @@
 				1B5BA2841D3BB9C600F0F085 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
