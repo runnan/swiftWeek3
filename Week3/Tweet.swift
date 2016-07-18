@@ -88,6 +88,12 @@ extension NSDate {
                 "\(interval)" + " " + "minutes"
         }
         
+        interval = NSCalendar.currentCalendar().components(.Second, fromDate: self, toDate: NSDate(), options: []).second
+        if interval > 0 {
+            return interval == 1 ? "\(interval)" + " " + "second" :
+                "\(interval)" + " " + "seconds"
+        }
+        
         return "a moment ago"
     }
 }

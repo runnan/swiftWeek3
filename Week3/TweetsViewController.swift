@@ -21,24 +21,36 @@ class TweetsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        TwitterClient.sharedInstance.homeTimeLine({ (tweets: [Tweet]) in
-            self.tweets = tweets
-            self.tweetTableView.delegate = self
-            self.tweetTableView.dataSource = self
-            self.tweetTableView.estimatedRowHeight = 100
-            self.tweetTableView.rowHeight = UITableViewAutomaticDimension
-            self.tweetTableView.reloadData()
-            
-        }) { (error:NSError) in
-                print(error.localizedDescription)
-        }
+        // Initialize a UIRefreshControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        // Tell the refreshControl to stop spinning
+        self.tweetTableView.delegate = self
+        self.tweetTableView.dataSource = self
+        self.tweetTableView.estimatedRowHeight = 100
+        self.tweetTableView.rowHeight = UITableViewAutomaticDimension
+        self.tweetTableView.insertSubview(refreshControl, atIndex: 0)
         
-        
+        refreshControlAction(refreshControl)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        TwitterClient.sharedInstance.homeTimeLine({ (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tweetTableView.reloadData()
+            refreshControl.endRefreshing()
+        }) { (error:NSError) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func setUpTableView(){
+        
     }
 
 }
