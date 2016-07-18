@@ -14,7 +14,8 @@ class TweetsViewController: UIViewController {
         TwitterClient.sharedInstance.logout()
     }
     
-    var tweets : [Tweet]!
+    var tweets = [Tweet]()
+    @IBOutlet weak var tweetTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +23,36 @@ class TweetsViewController: UIViewController {
         
         TwitterClient.sharedInstance.homeTimeLine({ (tweets: [Tweet]) in
             self.tweets = tweets
+            self.tweetTableView.delegate = self
+            self.tweetTableView.dataSource = self
+            self.tweetTableView.estimatedRowHeight = 100
+            self.tweetTableView.rowHeight = UITableViewAutomaticDimension
+            self.tweetTableView.reloadData()
+            
         }) { (error:NSError) in
                 print(error.localizedDescription)
-        }    }
+        }
+        
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension TweetsViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweets.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tweetTableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        cell.tweet = tweets[indexPath.row]
+        
+        return cell
+    }
 }

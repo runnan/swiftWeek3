@@ -14,6 +14,7 @@ class User: NSObject {
     var screenName: NSString?
     var profileURL: NSURL?
     var tagline: NSString?
+
     
     var dictionary : NSDictionary?
     
@@ -26,6 +27,7 @@ class User: NSObject {
             profileURL = NSURL(string: profileURLString!)
         }
         tagline = dictinary["description"] as? String
+        
     }
     
     static var _currentUser : User?

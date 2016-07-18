@@ -33,7 +33,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func homeTimeLine(success: ([Tweet]) -> (), failure : (NSError) -> ()){
         GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task : NSURLSessionDataTask, response : AnyObject?) in
-            print("accouut\(response)")
+            print("@@@@@@@@@@@\(response)")
             let dics = response as! [NSDictionary]
             
             let tweets = Tweet.tweetsWithArray(dics)

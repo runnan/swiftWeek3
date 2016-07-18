@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import AFNetworking
 
 class Tweet: NSObject {
-    var text: NSString?
+    var text: String?
     var timestamp: NSDate?
     var retweetCount: Int = 0
     var favoritesCout: Int = 0
+    var fullName:String?
+    var profile:NSURL?
+    var screenName:String?
     
     init(dictionary:NSDictionary) {
         text = dictionary["text"] as? String
@@ -25,15 +29,65 @@ class Tweet: NSObject {
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
             timestamp = formatter.dateFromString(timesString)
         }
+        fullName = dictionary["user"]!["name"] as? String
+        let imageURLString = dictionary["user"]!["profile_image_url"] as? String
+        if imageURLString != nil {
+            profile = NSURL(string: imageURLString!)!
+        } else {
+            profile = nil
+        }
+        screenName = dictionary["user"]!["screen_name"] as? String
     }
     
     class func tweetsWithArray(dictinaries : [NSDictionary]) -> [Tweet]{
         var tweets = [Tweet]()
         for dictionary in dictinaries {
             let tweet = Tweet(dictionary : dictionary)
+            print(tweet)
             tweets.append(tweet)
         }
         return tweets
     }
+    
+    // Creates a text representation of a GitHub repo
+    override var description: String {
+        
+        return "[text: \(self.text)]" +
+            "\n\t[timestamp: \(self.timestamp)]" +
+            "\n\t[retweetCount: \(self.retweetCount)]" +
+            "\n\t[favoritesCout: \(self.favoritesCout)]" +
+            "\n\t[fullName: \(self.fullName)]" +
+            "\n\t[profile: \(self.profile)]" +
+            "\n\t[screenName: \(self.screenName)]"
+        
+        //return ""
+    }
 
+
+}
+extension NSDate {
+    
+    func getElapsedInterval() -> String {
+
+        var interval = NSCalendar.currentCalendar().components(.Day, fromDate: self, toDate: NSDate(), options: []).day
+        if interval > 0 {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            return formatter.stringFromDate(self)
+        }
+        
+        interval = NSCalendar.currentCalendar().components(.Hour, fromDate: self, toDate: NSDate(), options: []).hour
+        if interval > 0 {
+            return interval == 1 ? "\(interval)" + " " + "hour" :
+                "\(interval)" + " " + "hours"
+        }
+        
+        interval = NSCalendar.currentCalendar().components(.Minute, fromDate: self, toDate: NSDate(), options: []).minute
+        if interval > 0 {
+            return interval == 1 ? "\(interval)" + " " + "minute" :
+                "\(interval)" + " " + "minutes"
+        }
+        
+        return "a moment ago"
+    }
 }
