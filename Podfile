@@ -9,4 +9,5 @@ target 'Week3' do
   pod 'AFNetworking', '~> 3.0.0'
   pod 'FontAwesome.swift'
   pod 'BDBOAuth1Manager', '2.0.0'
+  pod 'KMPlaceholderTextView'
 end

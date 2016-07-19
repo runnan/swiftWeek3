@@ -17,17 +17,20 @@ PODS:
   - BDBOAuth1Manager (2.0.0):
     - AFNetworking/NSURLSession (~> 3.0.0)
   - FontAwesome.swift (0.7.3)
+  - KMPlaceholderTextView (1.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.0)
   - BDBOAuth1Manager (= 2.0.0)
   - FontAwesome.swift
+  - KMPlaceholderTextView
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
   FontAwesome.swift: f694fe0f667d6d3390b5919cdb0556a27b75d427
+  KMPlaceholderTextView: be39afe3524144451941ddebf1d571ab1ef6e358
 
-PODFILE CHECKSUM: 26762bf8663f76c05a738ec6ec18b7b460d068f3
+PODFILE CHECKSUM: 3033e9efcfa153d83a72c4017d1f93f024cb3f1b
 
 COCOAPODS: 1.0.1
