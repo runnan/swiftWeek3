@@ -61,9 +61,9 @@ class TweetsViewController: UIViewController {
             newTweetVC.user = User.currentUser
             newTweetVC.delegate = self
         }else{
-            let detailTweetVC = navigationVC.topViewController as! TweetsViewController
-            //newTweetVC.user = User.currentUser
-            //newTweetVC.delegate = self
+            let detailTweetVC = navigationVC.topViewController as! TweetDetailViewController
+            let ip = tweetTableView.indexPathForSelectedRow
+            detailTweetVC.tweet = tweets[ip!.row]
         }
 
     }

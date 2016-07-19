@@ -14,10 +14,7 @@ class Tweet: NSObject {
     var timestamp: NSDate?
     var retweetCount: Int = 0
     var favoritesCout: Int = 0
-    
     var creator : Creator?
-    
-    
     
     init(dictionary:NSDictionary) {
         text = dictionary["text"] as? String

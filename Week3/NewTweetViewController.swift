@@ -77,7 +77,8 @@ extension NewTweetViewController : UITextFieldDelegate{
 
 extension NewTweetViewController : UITextViewDelegate{
     func textViewDidChange(textView: UITextView) { //Handle the text changes here
-        count.title = String(maxLength - contentTxt.text!.characters.count)    }
+        count.title = String(maxLength - contentTxt.text!.characters.count)
+    }
 }
 
 
