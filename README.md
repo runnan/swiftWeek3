@@ -2,6 +2,8 @@
 
 **swiftWeek3** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
 
+Firstly, next week (20/06 -> 27/06), I have a trip to Combodia. So, I try to finish the assignment 3 as much as posible. But no time to finish all points :(. I will update it later after the trip.
+
 Time spent: 4 hours spent in total
 
 ## User Stories
@@ -29,10 +31,6 @@ The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
 
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
-
-1.
-2.
 
 ## Video Walkthrough
 
