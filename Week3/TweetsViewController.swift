@@ -57,6 +57,7 @@ class TweetsViewController: UIViewController {
         
         let newTweetVC = navigationVC.topViewController as! NewTweetViewController
         newTweetVC.user = User.currentUser
+        newTweetVC.delegate = self
     }
  
 
@@ -74,5 +75,16 @@ extension TweetsViewController: UITableViewDataSource, UITableViewDelegate{
         cell.tweet = tweets[indexPath.row]
         
         return cell
+    }
+}
+
+extension TweetsViewController: NewTweetViewControllerDelegate{
+    func newTweetViewControllerDelegate (newTweetViewController:NewTweetViewController, didAddNewTweet result : Bool){
+        TwitterClient.sharedInstance.homeTimeLine({ (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tweetTableView.reloadData()
+        }) { (error:NSError) in
+            print(error.localizedDescription)
+        }
     }
 }

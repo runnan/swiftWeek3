@@ -190,9 +190,14 @@
                                 <action selector="onCancel:" destination="jrA-jf-sJq" id="sTO-AE-CbV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="ncJ-ab-sje"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="ncJ-ab-sje">
+                            <connections>
+                                <action selector="onNewTweet:" destination="jrA-jf-sJq" id="rYx-xI-Pz3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentTxt" destination="wPE-9d-ubw" id="XjF-3F-EiT"/>
                         <outlet property="fullnameLabel" destination="ney-Gx-fEW" id="EgD-eN-QAX"/>
                         <outlet property="profileImage" destination="hhV-RT-TDP" id="4Tg-BF-k7A"/>
                         <outlet property="usernameLabel" destination="ZMt-sW-8Xy" id="VW6-UI-nR0"/>

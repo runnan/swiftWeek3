@@ -8,6 +8,9 @@
 
 import UIKit
 
+@objc protocol NewTweetViewControllerDelegate {
+    optional func newTweetViewControllerDelegate (newTweetViewController:NewTweetViewController, didAddNewTweet result : Bool)
+}
 
 class NewTweetViewController: UIViewController {
     
@@ -18,6 +21,21 @@ class NewTweetViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     
     var user: User!
+    @IBOutlet weak var contentTxt: UITextField!
+    
+    weak var delegate:NewTweetViewControllerDelegate?
+    @IBAction func onNewTweet(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+        var result = false
+        TwitterClient.sharedInstance.postStatusUpdate(contentTxt.text!, success: {
+            result = true
+            self.delegate?.newTweetViewControllerDelegate?(self,didAddNewTweet : result)
+            }) { (error:NSError) in
+            print(error)
+            result = true
+            self.delegate?.newTweetViewControllerDelegate?(self,didAddNewTweet : result)
+        }
+    }
     @IBAction func onCancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
