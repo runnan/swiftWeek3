@@ -49,9 +49,17 @@ class TweetsViewController: UIViewController {
         }
     }
     
-    func setUpTableView(){
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        let navigationVC = segue.destinationViewController as! UINavigationController
         
+        let newTweetVC = navigationVC.topViewController as! NewTweetViewController
+        newTweetVC.user = User.currentUser
     }
+ 
+
 
 }
 
