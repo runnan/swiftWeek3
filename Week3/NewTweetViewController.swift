@@ -21,7 +21,11 @@ class NewTweetViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     
     var user: User!
-    @IBOutlet weak var contentTxt: UITextField!
+
+    let maxLength:Int = 140
+    
+    @IBOutlet weak var contentTxt: UITextView!
+    @IBOutlet weak var count: UIBarButtonItem!
     
     weak var delegate:NewTweetViewControllerDelegate?
     @IBAction func onNewTweet(sender: AnyObject) {
@@ -54,8 +58,26 @@ class NewTweetViewController: UIViewController {
         }
         fullnameLabel.text = user.name as?String
         usernameLabel.text = user.screenName as? String
-
+        
+        contentTxt.delegate = self
+        count.title = String(maxLength)
     }
-    
-    
 }
+
+extension NewTweetViewController : UITextFieldDelegate{
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        let currentString: NSString = contentTxt.text!
+        let newString: NSString =
+            currentString.stringByReplacingCharactersInRange(range, withString: string)
+        return newString.length <= maxLength
+    }
+}
+
+extension NewTweetViewController : UITextViewDelegate{
+    func textViewDidChange(textView: UITextView) { //Handle the text changes here
+        count.title = String(maxLength - contentTxt.text!.characters.count)    }
+}
+
+

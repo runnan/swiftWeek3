@@ -56,9 +56,16 @@ class TweetsViewController: UIViewController {
         // Pass the selected object to the new view controller.
         let navigationVC = segue.destinationViewController as! UINavigationController
         
-        let newTweetVC = navigationVC.topViewController as! NewTweetViewController
-        newTweetVC.user = User.currentUser
-        newTweetVC.delegate = self
+        if navigationVC.topViewController!.isKindOfClass(NewTweetViewController){
+            let newTweetVC = navigationVC.topViewController as! NewTweetViewController
+            newTweetVC.user = User.currentUser
+            newTweetVC.delegate = self
+        }else{
+            let detailTweetVC = navigationVC.topViewController as! TweetsViewController
+            //newTweetVC.user = User.currentUser
+            //newTweetVC.delegate = self
+        }
+
     }
  
 
