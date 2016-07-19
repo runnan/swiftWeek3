@@ -16,13 +16,14 @@ class TweetsViewController: UIViewController {
     
     var tweets = [Tweet]()
     @IBOutlet weak var tweetTableView: UITableView!
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // Initialize a UIRefreshControl
-        let refreshControl = UIRefreshControl()
+        
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         // Tell the refreshControl to stop spinning
         self.tweetTableView.delegate = self
@@ -73,18 +74,12 @@ extension TweetsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tweetTableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         cell.tweet = tweets[indexPath.row]
-        
         return cell
     }
 }
 
 extension TweetsViewController: NewTweetViewControllerDelegate{
     func newTweetViewControllerDelegate (newTweetViewController:NewTweetViewController, didAddNewTweet result : Bool){
-        TwitterClient.sharedInstance.homeTimeLine({ (tweets: [Tweet]) in
-            self.tweets = tweets
-            self.tweetTableView.reloadData()
-        }) { (error:NSError) in
-            print(error.localizedDescription)
-        }
+        refreshControlAction(refreshControl)
     }
 }

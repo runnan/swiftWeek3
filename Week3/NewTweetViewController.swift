@@ -52,8 +52,8 @@ class NewTweetViewController: UIViewController {
         }else{
             profileImage.image = UIImage.fontAwesomeIconWithName(.Cutlery, textColor: UIColor.blackColor(), size: CGSizeMake(90, 90))
         }
-        fullnameLabel.text = user.name as! String
-        usernameLabel.text = user.screenName as! String
+        fullnameLabel.text = user.name as?String
+        usernameLabel.text = user.screenName as? String
 
     }
     
