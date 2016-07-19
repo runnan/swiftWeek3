@@ -24,15 +24,14 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet!{
         didSet{
-            if(tweet.profile != nil){
-                
-                profileImage.setImageWithURL(tweet.profile!)
+            if(tweet.creator!.profile != nil){
+                profileImage.setImageWithURL(tweet.creator!.profile)
             }else{
                 profileImage.image = UIImage.fontAwesomeIconWithName(.Cutlery, textColor: UIColor.blackColor(), size: CGSizeMake(90, 90))
             }
-            fullNameLabel.text = tweet.fullName
+            fullNameLabel.text = tweet.creator!.fullName
             contentLabel.text = tweet.text
-            screenNameLabel.text = "@" + tweet.screenName!
+            screenNameLabel.text = "@" + tweet.creator!.screenName
             
             time.text = tweet.timestamp?.getElapsedInterval()
         }

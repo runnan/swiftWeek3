@@ -14,9 +14,10 @@ class Tweet: NSObject {
     var timestamp: NSDate?
     var retweetCount: Int = 0
     var favoritesCout: Int = 0
-    var fullName:String?
-    var profile:NSURL?
-    var screenName:String?
+    
+    var creator : Creator?
+    
+    
     
     init(dictionary:NSDictionary) {
         text = dictionary["text"] as? String
@@ -29,14 +30,8 @@ class Tweet: NSObject {
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
             timestamp = formatter.dateFromString(timesString)
         }
-        fullName = dictionary["user"]!["name"] as? String
-        let imageURLString = dictionary["user"]!["profile_image_url"] as? String
-        if imageURLString != nil {
-            profile = NSURL(string: imageURLString!)!
-        } else {
-            profile = nil
-        }
-        screenName = dictionary["user"]!["screen_name"] as? String
+        
+        creator = Creator(dictionary: dictionary)
     }
     
     class func tweetsWithArray(dictinaries : [NSDictionary]) -> [Tweet]{
@@ -55,10 +50,7 @@ class Tweet: NSObject {
         return "[text: \(self.text)]" +
             "\n\t[timestamp: \(self.timestamp)]" +
             "\n\t[retweetCount: \(self.retweetCount)]" +
-            "\n\t[favoritesCout: \(self.favoritesCout)]" +
-            "\n\t[fullName: \(self.fullName)]" +
-            "\n\t[profile: \(self.profile)]" +
-            "\n\t[screenName: \(self.screenName)]"
+            "\n\t[favoritesCout: \(self.favoritesCout)]"
         
         //return ""
     }
